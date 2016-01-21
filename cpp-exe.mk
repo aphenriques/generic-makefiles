@@ -5,7 +5,7 @@ INCLUDE_DIRS=
 LIB_DIRS=
 LDLIBS=
 
-CXXFLAGS=-g -O0 --std=c++11 -Wall $(addprefix -I, $(INCLUDE_DIRS))
+CXXFLAGS=-g -O0 --std=c++14 -Wall $(addprefix -I, $(INCLUDE_DIRS))
 LDFLAGS=$(addprefix -L, $(LIB_DIRS))
 
 ################################################################################
