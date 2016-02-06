@@ -7,7 +7,7 @@ LDLIBS=
 
 CFLAGS=-g -O0 -Wall -fPIC $(addprefix -I, $(INCLUDE_DIRS))
 ARFLAGS=rcs
-LDFLAGS=$(addprefix -L, $(LIB_DIRS))
+LDFLAGS=-shared $(addprefix -L, $(LIB_DIRS))
 
 ################################################################################
 

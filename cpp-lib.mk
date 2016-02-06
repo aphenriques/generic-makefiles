@@ -7,7 +7,7 @@ LDLIBS=
 
 CXXFLAGS=-g -O0 --std=c++14 -Wall -fPIC $(addprefix -I, $(INCLUDE_DIRS))
 ARFLAGS=rcs
-LDFLAGS=$(addprefix -L, $(LIB_DIRS))
+LDFLAGS=-shared $(addprefix -L, $(LIB_DIRS))
 
 ################################################################################
 
