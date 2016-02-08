@@ -1,28 +1,28 @@
-TARGET=
-SRC_DIRS=. $(wildcard */.)
-FILTER_OUT=
-INCLUDE_DIRS=
-LIB_DIRS=
-LDLIBS=
+TARGET:=
+SRC_DIRS:=. $(wildcard */.)
+FILTER_OUT:=
+INCLUDE_DIRS:=
+LIB_DIRS:=
+LDLIBS:=
 
-CXXFLAGS=-g -O0 --std=c++14 -Wall -fPIC $(addprefix -I, $(INCLUDE_DIRS))
-ARFLAGS=rcs
-LDFLAGS=-shared $(addprefix -L, $(LIB_DIRS))
+CXXFLAGS:=-g -O0 --std=c++14 -Wall -fPIC $(addprefix -I, $(INCLUDE_DIRS))
+ARFLAGS:=rcs
+LDFLAGS:=$(addprefix -L, $(LIB_DIRS)) -shared
 
 ################################################################################
 
 ifeq ($(shell uname -s),Darwin)
-SHARED_LIB_EXTENSION=dylib
+SHARED_LIB_EXTENSION:=dylib
 else
-SHARED_LIB_EXTENSION=so
+SHARED_LIB_EXTENSION:=so
 endif
 
-STATIC_LIB=$(TARGET).a
-SHARED_LIB=$(TARGET).$(SHARED_LIB_EXTENSION)
+STATIC_LIB:=$(TARGET).a
+SHARED_LIB:=$(TARGET).$(SHARED_LIB_EXTENSION)
 
-SRCS=$(filter-out $(join $(dir $(FILTER_OUT)), $(notdir $(FILTER_OUT))), $(wildcard $(addsuffix *.cpp, $(dir $(SRC_DIRS)))))
-OBJS=$(addsuffix .o, $(basename $(SRCS)))
-DEPS=$(addsuffix .d, $(basename $(SRCS)))
+SRCS:=$(filter-out $(FILTER_OUT), $(wildcard $(addsuffix /*.cpp, $(SRC_DIRS))))
+OBJS:=$(addsuffix .o, $(basename $(SRCS)))
+DEPS:=$(addsuffix .d, $(basename $(SRCS)))
 
 .PHONY: all static shared clean
 
@@ -39,7 +39,7 @@ $(SHARED_LIB): $(OBJS)
 	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 clean:
-	rm -f $(addsuffix *.d, $(dir $(SRC_DIRS))) $(addsuffix *.o, $(dir $(SRC_DIRS))) $(STATIC_LIB) $(SHARED_LIB)
+	rm -f $(addsuffix /*.d, $(SRC_DIRS)) $(addsuffix /*.o, $(SRC_DIRS)) $(STATIC_LIB) $(SHARED_LIB)
 #	rm -f $(DEPS) $(OBJS) $(STATIC_LIB) $(SHARED_LIB)
 
 %.d: %.cpp
