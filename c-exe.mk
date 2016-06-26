@@ -10,6 +10,7 @@ LDFLAGS:=$(addprefix -L, $(LIB_DIRS))
 
 ################################################################################
 
+SRC_DIRS:=$(subst /.,,$(SRC_DIRS))
 SRCS:=$(filter-out $(FILTER_OUT), $(wildcard $(addsuffix /*.c, $(SRC_DIRS))))
 OBJS:=$(addsuffix .o, $(basename $(SRCS)))
 DEPS:=$(addsuffix .d, $(basename $(SRCS)))

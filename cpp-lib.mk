@@ -20,6 +20,7 @@ endif
 STATIC_LIB:=$(TARGET).a
 SHARED_LIB:=$(TARGET).$(SHARED_LIB_EXTENSION)
 
+SRC_DIRS:=$(subst /.,,$(SRC_DIRS))
 SRCS:=$(filter-out $(FILTER_OUT), $(wildcard $(addsuffix /*.cpp, $(SRC_DIRS))))
 OBJS:=$(addsuffix .o, $(basename $(SRCS)))
 DEPS:=$(addsuffix .d, $(basename $(SRCS)))
