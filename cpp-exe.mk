@@ -2,10 +2,12 @@ TARGET:=
 SRC_DIRS:=. $(wildcard */.)
 FILTER_OUT:=
 INCLUDE_DIRS:=
+SYSTEM_INCLUDE_DIRS:=
 LIB_DIRS:=
 LDLIBS:=
 
-CXXFLAGS:=-g -O0 --std=c++14 -Wall $(addprefix -I, $(INCLUDE_DIRS))
+# '-isystem <dir>' supress warnings from included headers in <dir>. These headers are also excluded from dependency generation
+CXXFLAGS:=-g -O0 --std=c++14 -Wall $(addprefix -I, $(INCLUDE_DIRS)) $(addprefix -isystem , $(SYSTEM_INCLUDE_DIRS))
 LDFLAGS:=$(addprefix -L, $(LIB_DIRS))
 
 ################################################################################
