@@ -36,10 +36,10 @@ static: $(STATIC_LIB)
 shared: $(SHARED_LIB)
 
 $(STATIC_LIB): $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+	$(AR) $(ARFLAGS) $@ $(OBJS)
 
 $(SHARED_LIB): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ $(OBJS) $(LDFLAGS) $(LDLIBS)
 
 clean:
 	rm -f $(addsuffix /*.d, $(SRC_DIRS)) $(addsuffix /*.o, $(SRC_DIRS)) $(STATIC_LIB) $(SHARED_LIB)

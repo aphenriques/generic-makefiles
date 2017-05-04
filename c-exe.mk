@@ -22,7 +22,7 @@ DEPS:=$(addsuffix .d, $(basename $(SRCS)))
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ $(OBJS) $(LDFLAGS) $(LDLIBS)
 
 clean:
 	rm -f $(addsuffix /*.d, $(SRC_DIRS)) $(addsuffix /*.o, $(SRC_DIRS)) $(TARGET)
